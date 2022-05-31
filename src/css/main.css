@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa;
+    color: #18131c;
+    line-height: 1.5;
+}
+
+.search-image-form {
+    display: flex;
+    justify-content: center;
+}
+
+.search-picture-form__input {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    border: 2px solid #9966cc;
+    border-radius: 4px;
+    background-color: transparent;
+    background: white;
+    outline: none;
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button {
+    display: flex;
+    margin-left: 0;
+    border-radius: 4px;
+    min-width: 150px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.87;
+    letter-spacing: 0.06em;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #9966cc;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button__icon {
+    fill: currentColor;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover,
+.button:focus {
+    background-color: transparent;
+    box-shadow: 0px 4px 4px #9966cc;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.image-card {
+    width: calc((100% - 80px) / 4);
+    margin: 10px;
+    border: 1px solid #1d1624;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.image-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 4px #9966cc;
+}
+
+.info-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-item {
+    text-align: center;
+    margin: auto;
+}
