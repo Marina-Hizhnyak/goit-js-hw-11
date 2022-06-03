@@ -4,6 +4,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import './css/main.css';
 import ApiService from './API';
 import pictureCard from './template.hbs';
+import throttle from 'lodash.throttle';
+
 
 const refs = {
   searchForm: document.querySelector('.search-image-form'),
@@ -57,7 +59,7 @@ function appendImage(card) {
 
 }
 
-window.addEventListener('scroll', infiniteScroll);
+window.addEventListener('scroll', throttle(infiniteScroll,1000));
 
 function infiniteScroll() {
   const documentRect = document.documentElement.getBoundingClientRect();
