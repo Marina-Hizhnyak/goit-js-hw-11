@@ -66,7 +66,7 @@ function infiniteScroll() {
       .getImage()
       .then(({ hits }) => {
         if (hits.length === 0) {
-          Notiflix.Notify.failure('We're sorry, but you've reached the end of search results.');
+          Notiflix.Notify.failure("We are sorry, but you have reached the end of search results.");
           return;
         }
         appendImage(hits);
