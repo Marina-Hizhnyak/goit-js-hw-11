@@ -5,7 +5,6 @@ import './css/main.css';
 import ApiService from './API';
 import pictureCard from './template.hbs';
 
-
 const refs = {
   searchForm: document.querySelector('.search-image-form'),
   galleryEl: document.querySelector('.gallery'),
@@ -27,13 +26,14 @@ function searchImage(e) {
   e.preventDefault();
   inputClear();
   apiService.resetPage();
-  apiService.query = e.currentTarget.elements.searchQuery.value;
-  if (apiService.query.trim() === '') {
+  apiService.params.q = e.currentTarget.elements.searchQuery.value;
+  if (apiService.params.q.trim() === '') {
     Notiflix.Notify.failure('Please fill in the field');
     return;
   }
 
-  apiService.getImage().then(({ data }) => {
+
+  apiService.getImage().then(data => {
     appendImage(data.hits);
     lightbox.refresh();
     if (data.totalHits === 0) {
@@ -45,6 +45,7 @@ function searchImage(e) {
     if (data.totalHits !== 0) {
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images!`);
     }
+
   });
 }
 
@@ -53,15 +54,28 @@ function inputClear() {
 }
 function appendImage(card) {
   refs.galleryEl.insertAdjacentHTML('beforeend', pictureCard(card));
+
 }
 
+window.addEventListener('scroll', infiniteScroll);
 
-window.addEventListener('scroll', () => {
+function infiniteScroll() {
   const documentRect = document.documentElement.getBoundingClientRect();
-  if (documentRect.bottom < document.documentElement.clientHeight + 150) {
-    apiService.getImage().then(({ data }) => {
-      appendImage(data.hits);
-      lightbox.refresh();
-    });
+  if (documentRect.bottom < document.documentElement.clientHeight + 100) {
+    apiService
+      .getImage()
+      .then(({ hits }) => {
+        if (hits.length === 0) {
+          Notiflix.Notify.failure('We're sorry, but you've reached the end of search results.');
+          return;
+        }
+        appendImage(hits);
+        lightbox.refresh();
+      })
+      .catch(error => {
+        console.log(error);
+        return;
+      });
   }
-});
+}
+
